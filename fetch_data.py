@@ -44,7 +44,9 @@ def fetch_contract_transactions(contract_address: str, days: int = 90) -> pd.Dat
     Fetches normal transactions for a given Ethereum contract address from the last `days` days using Etherscan API V2.
     Handles pagination (sort=desc) and rate-limiting delays.
     """
-    if not ETHERSCAN_API_KEY or ETHERSCAN_API_KEY == "your_key_here":
+    load_dotenv(override=True)
+    api_key = os.getenv("ETHERSCAN_API_KEY") or ETHERSCAN_API_KEY
+    if not api_key or api_key == "your_key_here":
         print("[Error] Invalid or missing ETHERSCAN_API_KEY in .env file. Please add your key.")
         return pd.DataFrame(columns=TARGET_COLUMNS)
 
@@ -69,7 +71,7 @@ def fetch_contract_transactions(contract_address: str, days: int = 90) -> pd.Dat
             "page": 1,
             "offset": 10000,
             "sort": "desc",
-            "apikey": ETHERSCAN_API_KEY
+            "apikey": api_key
         }
 
         try:

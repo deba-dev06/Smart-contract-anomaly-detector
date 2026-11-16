@@ -17,7 +17,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-st.title("🛡️ Smart Contract Behaviour Anomaly Detector")
+st.title("🛡️ChainGuard: Smart Contract Behaviour Anomaly Detector")
 st.markdown(
     "Unsupervised ML detection of abnormal on-chain transaction patterns using **Isolation Forest** on Ethereum Mainnet data."
 )
